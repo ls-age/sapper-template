@@ -9,7 +9,7 @@
     "cy:run-junit": "npm run cy:run -- --reporter junit --reporter-options 'mochaFile=test/report/report.xml'",
     "dev": "sapper dev",
     "export": "sapper export --legacy",
-    "format": "prettier \"**/*\" !.gitignore !.eslintignore !static/**/* !__sapper__/**/* --write",
+    "format": "prettier \"**/*\" !.gitignore !.eslintignore \"!{static,__sapper__,test/report}/**/*\" --write",
     "lint": "eslint rollup.config.js src test --ext .js,.svelte",
     "start": "node __sapper__/build",
     "test": "run-p --race dev cy:run",
