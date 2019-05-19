@@ -42,5 +42,10 @@
     "rollup-plugin-terser": "^4.0.4",
     "sapper": "^0.27.0",
     "svelte": "^3.4.1"
+  },
+  "renovate": {
+    "extends": [
+      "@ls-age:automergeDev"
+    ]
   }
 }
