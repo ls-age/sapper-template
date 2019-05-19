@@ -1,0 +1,5 @@
+{
+  "settings": {
+    "import/core-modules": ["@sapper/app", "@sapper/server", "@sapper/service-worker"]
+  }
+}
