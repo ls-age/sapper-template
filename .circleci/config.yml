@@ -8,7 +8,7 @@ git-login: &git-login
 
 version: 2
 jobs:
-  install-deps:
+  install:
     <<: *defaults
     steps:
       - checkout
@@ -98,4 +98,4 @@ workflows:
             - install-deps
       - test:
           requires:
-            - install-deps
+            - build
