@@ -50,6 +50,9 @@ jobs:
       - run:
           name: Run ESLint
           command: npm run lint -- --format junit --output-file ~/reports/eslint.xml
+      - run:
+          name: Check prettier
+          command: npm run format -- --check
       - store_test_results:
           path: ~/reports
           when: always
