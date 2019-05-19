@@ -6,12 +6,14 @@
     "build": "sapper build --legacy",
     "cy:open": "cypress open",
     "cy:run": "cypress run",
+    "cy:run-junit": "npm run cy:run -- --reporter junit --reporter-options 'mochaFile=test/report/report.xml'",
     "dev": "sapper dev",
     "export": "sapper export --legacy",
     "format": "prettier \"**/*\" !.gitignore !.eslintignore !static/**/* !__sapper__/**/* --write",
     "lint": "eslint rollup.config.js src test --ext .js,.svelte",
     "start": "node __sapper__/build",
-    "test": "run-p --race dev cy:run"
+    "test": "run-p --race dev cy:run",
+    "test:ci": "run-p --race start cy:run-junit"
   },
   "dependencies": {
     "compression": "^1.7.4",
