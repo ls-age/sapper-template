@@ -89,13 +89,13 @@ workflows:
 
   default:
     jobs:
-      - install-deps
+      - install
       - build:
           requires:
-            - install-deps
+            - install
       - lint:
           requires:
-            - install-deps
+            - install
       - test:
           requires:
             - build
