@@ -7,6 +7,9 @@
   "rules": {
     "compat/compat": "off"
   },
+  "settings": {
+    "svelte3/ignore-styles": true
+  },
   "overrides": [
     {
       "files": ["*.svelte"],
