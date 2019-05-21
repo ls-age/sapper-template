@@ -1,3 +1,4 @@
+import { join } from 'path';
 import { builtinModules } from 'module';
 import resolve from 'rollup-plugin-node-resolve';
 import replace from 'rollup-plugin-replace';
@@ -6,6 +7,7 @@ import svelte from 'rollup-plugin-svelte';
 import babel from 'rollup-plugin-babel';
 import { terser } from 'rollup-plugin-terser';
 import config from 'sapper/config/rollup.js';
+import { sass } from 'svelte-preprocess-sass';
 import { dependencies } from './package.json';
 
 const mode = process.env.NODE_ENV;
@@ -14,7 +16,14 @@ const legacy = !!process.env.SAPPER_LEGACY_BUILD;
 
 const svelteOptions = {
   dev,
-  // Add preprocessors here...
+  preprocess: {
+    style: sass(
+      {
+        includePaths: [join(__dirname, 'node_modules')],
+      },
+      { name: 'scss' }
+    ),
+  },
 };
 
 export default {

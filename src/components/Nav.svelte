@@ -2,7 +2,9 @@
   export let segment;
 </script>
 
-<style>
+<style type="text/scss">
+  @import '../styles/theme.scss';
+
   nav {
     border-bottom: 1px solid rgba(255, 62, 0, 0.1);
     font-weight: 300;
@@ -36,7 +38,7 @@
     content: '';
     width: calc(100% - 1em);
     height: 2px;
-    background-color: rgb(255, 62, 0);
+    background-color: $primary-color;
     display: block;
     bottom: -1px;
   }
