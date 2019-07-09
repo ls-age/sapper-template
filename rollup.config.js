@@ -15,6 +15,7 @@ const legacy = !!process.env.SAPPER_LEGACY_BUILD;
 const onwarn = (warning, original) =>
   (warning.code === 'CIRCULAR_DEPENDENCY' && /[/\\]@sapper[/\\]/.test(warning.message)) ||
   original(warning);
+const dedupe = importee => importee === 'svelte' || importee.startsWith('svelte/');
 
 const svelteOptions = {
   dev,
@@ -37,6 +38,7 @@ export default {
       }),
       resolve({
         browser: true,
+        dedupe,
       }),
       commonjs(),
 
@@ -85,7 +87,9 @@ export default {
         ...svelteOptions,
         generate: 'ssr',
       }),
-      resolve(),
+      resolve({
+        dedupe,
+      }),
       commonjs(),
     ],
     external: (builtinModules || Object.keys(process.binding('natives'))).concat(
