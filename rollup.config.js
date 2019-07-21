@@ -12,6 +12,11 @@ const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
 const legacy = !!process.env.SAPPER_LEGACY_BUILD;
 
+const onwarn = (warning, original) =>
+  (warning.code === 'CIRCULAR_DEPENDENCY' && /[/\\]@sapper[/\\]/.test(warning.message)) ||
+  original(warning);
+const dedupe = importee => importee === 'svelte' || importee.startsWith('svelte/');
+
 const svelteOptions = {
   dev,
   // Add preprocessors here...
@@ -31,7 +36,10 @@ export default {
         hydratable: true,
         emitCss: true,
       }),
-      resolve(),
+      resolve({
+        browser: true,
+        dedupe,
+      }),
       commonjs(),
 
       legacy &&
@@ -63,6 +71,8 @@ export default {
           module: true,
         }),
     ],
+
+    onwarn,
   },
 
   server: {
@@ -77,12 +87,16 @@ export default {
         ...svelteOptions,
         generate: 'ssr',
       }),
-      resolve(),
+      resolve({
+        dedupe,
+      }),
       commonjs(),
     ],
     external: (builtinModules || Object.keys(process.binding('natives'))).concat(
       Object.keys(dependencies)
     ),
+
+    onwarn,
   },
 
   serviceworker: {
@@ -97,5 +111,7 @@ export default {
       commonjs(),
       !dev && terser(),
     ],
+
+    onwarn,
   },
 };
