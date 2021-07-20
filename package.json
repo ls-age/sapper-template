@@ -21,11 +21,11 @@
     "sirv": "0.4.2"
   },
   "devDependencies": {
-    "@babel/core": "7.14.6",
+    "@babel/core": "7.14.8",
     "@babel/plugin-syntax-dynamic-import": "7.8.3",
     "@babel/plugin-transform-runtime": "7.14.5",
-    "@babel/preset-env": "7.14.7",
-    "@babel/runtime": "7.14.6",
+    "@babel/preset-env": "7.14.8",
+    "@babel/runtime": "7.14.8",
     "@ls-age/eslint-config": "0.9.2",
     "cypress": "8.0.0",
     "eslint": "7.19.0",
